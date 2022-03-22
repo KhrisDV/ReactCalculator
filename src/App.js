@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -38,6 +38,17 @@ function App() {
     setFirstNumber("");
   }
 
+  const memory = useRef(null);
+
+  function memoryHandler(event) {
+    memory.current = result;
+    console.log(memory);
+  }
+
+  function memoryrHandler(event) {
+    setFirstNumber(memory.current);
+  }
+
   useEffect(() => {
     console.log("firstNumber state:", firstNumber);
     console.log("secondNumber state:", secondNumber);
@@ -46,7 +57,7 @@ function App() {
 
   return (
     <>
-      <h1>Calculadora</h1>
+      <h1>Calculator</h1>
       <input
         type="text"
         value={firstNumber}
@@ -63,6 +74,8 @@ function App() {
       <input type="button" value="x" onClick={porHandler} />
       <input type="button" value="/" onClick={divHandler} />
       <input type="button" value="C" onClick={clearHandler} />
+      <input type="button" value="M+" onClick={memoryHandler} />
+      <input type="button" value="MR" onClick={memoryrHandler} />
     </>
   );
 }
