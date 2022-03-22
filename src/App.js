@@ -5,31 +5,31 @@ function App() {
   const [firstNumber, setFirstNumber] = useState(0);
 
   function changeFirstNumberHandler(event) {
-    setFirstNumber(event.target.value);
+    setFirstNumber(parseFloat(event.target.value));
   }
 
   const [secondNumber, setSecondNumber] = useState(0);
 
   function changeSecondNumberHandler(event) {
-    setSecondNumber(event.target.value);
+    setSecondNumber(parseFloat(event.target.value));
   }
 
   const [result, setResult] = useState(0);
 
   function addHandler(event) {
-    setResult(parseFloat(firstNumber) + parseFloat(secondNumber));
+    setResult(firstNumber + secondNumber);
   }
 
   function restHandler(event) {
-    setResult(parseFloat(firstNumber) - parseFloat(secondNumber));
+    setResult(firstNumber - secondNumber);
   }
 
   function porHandler(event) {
-    setResult(parseFloat(firstNumber) * parseFloat(secondNumber));
+    setResult(firstNumber * secondNumber);
   }
 
   function divHandler(event) {
-    setResult(parseFloat(firstNumber) / parseFloat(secondNumber));
+    setResult(firstNumber / secondNumber);
   }
 
   function clearHandler(event) {
