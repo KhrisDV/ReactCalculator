@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import History from "./Components/History/History.jsx";
 
 function App() {
   const [firstNumber, setFirstNumber] = useState(0);
@@ -13,51 +14,67 @@ function App() {
   function changeSecondNumberHandler(event) {
     setSecondNumber(parseFloat(event.target.value));
   }
-
   const [result, setResult] = useState(0);
 
-  function addHandler(event) {
-    setResult(firstNumber + secondNumber);
+  const [resultsHistory, setResultsHistory] = useState([]);
+  const results = useRef(0);
+
+  function addHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "+",
+      resultado: firstNumber + secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function restHandler(event) {
-    setResult(firstNumber - secondNumber);
+  function restHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "-",
+      resultado: firstNumber - secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function porHandler(event) {
-    setResult(firstNumber * secondNumber);
+  function porHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "x",
+      resultado: firstNumber * secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function divHandler(event) {
-    setResult(firstNumber / secondNumber);
+  function divHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "/",
+      resultado: firstNumber / secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function clearHandler(event) {
-    setResult(null);
-    setSecondNumber("");
-    setFirstNumber("");
+  function clearNumberHandler(event) {
+    setFirstNumber("0");
+    setSecondNumber("0");
+    setResult("0");
   }
-
-  const memory = useRef(null);
-
-  function memoryHandler(event) {
-    memory.current = result;
-    console.log(memory);
+  function resultMemory() {
+    results.current = parseFloat(result.resultado);
   }
-
-  function memoryrHandler(event) {
-    setFirstNumber(memory.current);
+  function restoreResult() {
+    setFirstNumber(results.current);
   }
-
   useEffect(() => {
-    console.log("firstNumber state:", firstNumber);
-    console.log("secondNumber state:", secondNumber);
-    console.log("result state:", result);
-  });
+    if (result.resultado != null) {
+      setResultsHistory([...resultsHistory, result]);
+    }
+  }, [result]);
 
   return (
     <>
-      <h1>Calculator</h1>
+      <h1>Calculadora</h1>
       <input
         type="text"
         value={firstNumber}
@@ -68,14 +85,31 @@ function App() {
         value={secondNumber}
         onChange={changeSecondNumberHandler}
       />
-      <p>{result}</p>
-      <input type="button" value="+" onClick={addHandler} />
-      <input type="button" value="-" onClick={restHandler} />
-      <input type="button" value="x" onClick={porHandler} />
-      <input type="button" value="/" onClick={divHandler} />
-      <input type="button" value="C" onClick={clearHandler} />
-      <input type="button" value="M+" onClick={memoryHandler} />
-      <input type="button" value="MR" onClick={memoryrHandler} />
+
+      <button type="sumit" onClick={addHandler}>
+        +
+      </button>
+      <button type="sumit" onClick={restHandler}>
+        -
+      </button>
+      <button type="sumit" onClick={porHandler}>
+        x
+      </button>
+      <button type="sumit" onClick={divHandler}>
+        %
+      </button>
+      <button type="sumit" onClick={clearNumberHandler}>
+        C
+      </button>
+      <button type="sumit" onClick={resultMemory}>
+        M+
+      </button>
+      <button type="sumit" onClick={restoreResult}>
+        MR
+      </button>
+      <p>{result.resultado}</p>
+      <h2>Historial</h2>
+      <History results={resultsHistory} />
     </>
   );
 }
