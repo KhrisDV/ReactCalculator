@@ -14,7 +14,6 @@ function App() {
   function changeSecondNumberHandler(event) {
     setSecondNumber(parseFloat(event.target.value));
   }
-
   const [result, setResult] = useState(0);
 
   const [resultsHistory, setResultsHistory] = useState([]);
@@ -75,7 +74,7 @@ function App() {
 
   return (
     <>
-      <h1>Calculator</h1>
+      <h1>Calculadora</h1>
       <input
         type="text"
         value={firstNumber}
