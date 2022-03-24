@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import History from "./components/History/History.jsx";
 
 function App() {
   const [firstNumber, setFirstNumber] = useState(0);
@@ -16,44 +17,61 @@ function App() {
 
   const [result, setResult] = useState(0);
 
-  function addHandler(event) {
-    setResult(firstNumber + secondNumber);
-  }
+  const [resultsHistory, setResultsHistory] = useState([]);
+  const results = useRef(0);
 
-  function restHandler(event) {
-    setResult(firstNumber - secondNumber);
+  function addHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "+",
+      resultado: firstNumber + secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function porHandler(event) {
-    setResult(firstNumber * secondNumber);
+  function restHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "-",
+      resultado: firstNumber - secondNumber,
+    };
+    setResult(terminos);
   }
-
-  function divHandler(event) {
-    setResult(firstNumber / secondNumber);
+  function porHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "x",
+      resultado: firstNumber * secondNumber,
+    };
+    setResult(terminos);
   }
-
+  function divHandler() {
+    const terminos = {
+      primerTermino: firstNumber,
+      segundoTermino: secondNumber,
+      operador: "/",
+      resultado: firstNumber / secondNumber,
+    };
+    setResult(terminos);
+  }
   function clearHandler(event) {
-    setResult(null);
-    setSecondNumber("");
-    setFirstNumber("");
+    setFirstNumber("0");
+    setSecondNumber("0");
+    setResult("0");
   }
-
-  const memory = useRef(null);
-
-  function memoryHandler(event) {
-    memory.current = result;
-    console.log(memory);
+  function memoryHandler() {
+    results.current = parseFloat(result.resultado);
   }
-
-  function memoryrHandler(event) {
-    setFirstNumber(memory.current);
+  function memory2Handler() {
+    setFirstNumber(results.current);
   }
-
   useEffect(() => {
-    console.log("firstNumber state:", firstNumber);
-    console.log("secondNumber state:", secondNumber);
-    console.log("result state:", result);
-  });
+    if (result.resultado != null) {
+      setResultsHistory([...resultsHistory, result]);
+    }
+  }, [result]);
 
   return (
     <>
@@ -68,14 +86,17 @@ function App() {
         value={secondNumber}
         onChange={changeSecondNumberHandler}
       />
-      <p>{result}</p>
-      <input type="button" value="+" onClick={addHandler} />
-      <input type="button" value="-" onClick={restHandler} />
-      <input type="button" value="x" onClick={porHandler} />
-      <input type="button" value="/" onClick={divHandler} />
-      <input type="button" value="C" onClick={clearHandler} />
-      <input type="button" value="M+" onClick={memoryHandler} />
-      <input type="button" value="MR" onClick={memoryrHandler} />
+      <br></br>
+      <input type="button" value="+" onClick={addHandler}></input>
+      <input type="button" value="-" onClick={restHandler}></input>
+      <input type="button" value="x" onClick={porHandler}></input>
+      <input type="button" value="/" onClick={divHandler}></input>
+      <input type="button" value="C" onClick={clearHandler}></input>
+      <input type="button" value="M+" onClick={memoryHandler}></input>
+      <input type="button" value="MR" onClick={memory2Handler}></input>
+      <p>{result.resultado}</p>
+      <h2>Historial</h2>
+      <History results={resultsHistory} />
     </>
   );
 }
