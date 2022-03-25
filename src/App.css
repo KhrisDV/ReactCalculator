@@ -105,6 +105,8 @@ header {
 }
 
 .historial {
+  text-align: center;
+  align-content: center;
   grid-column-start: 2;
   grid-column-end: 7;
   grid-row-start: 5;

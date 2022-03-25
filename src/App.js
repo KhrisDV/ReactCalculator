@@ -136,7 +136,6 @@ function App() {
       <div className="result">
         <p>{result.resultado}</p>
       </div>
-
       <div className="historial">
         <h2>Historial</h2>
         <History results={resultsHistory} />
