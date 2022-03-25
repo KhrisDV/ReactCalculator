@@ -1,0 +1,109 @@
+header {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.casilla-primera {
+  text-align: center;
+  background-color: lightgrey;
+  font-size: 4em;
+  height: 150px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.casilla-segunda {
+  text-align: center;
+  background-color: lightgrey;
+  font-size: 4em;
+  grid-column-start: 5;
+  grid-column-end: 8;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.boton-suma {
+  background-color: lightgreen;
+  margin: 3px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-resta {
+  background-color: lightcoral;
+  margin: 3px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-mult {
+  background-color: lightgoldenrodyellow;
+  margin: 3px;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-div {
+  background-color: lightblue;
+  margin: 3px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-c {
+  background-color: lightslategrey;
+  margin: 3px;
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-m {
+  background-color: lightslategrey;
+  margin: 3px;
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.boton-mr {
+  background-color: lightslategrey;
+  margin: 3px;
+  grid-column-start: 7;
+  grid-column-end: 8;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.result {
+  text-align: center;
+  font-size: 3em;
+  background-color: lightgrey;
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 6;
+}
+
+.historial {
+  grid-column-start: 2;
+  grid-column-end: 7;
+  grid-row-start: 5;
+}

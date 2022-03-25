@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import History from "./components/History/History.jsx";
+import History from "./Components/History/History.jsx";
 
 function App() {
   const [firstNumber, setFirstNumber] = useState(0);
@@ -74,28 +74,73 @@ function App() {
 
   return (
     <>
-      <h1>Calculadora</h1>
-      <input
-        type="text"
-        value={firstNumber}
-        onChange={changeFirstNumberHandler}
-      />
-      <input
-        type="text"
-        value={secondNumber}
-        onChange={changeSecondNumberHandler}
-      />
-      <br></br>
-      <input type="button" value="+" onClick={addHandler}></input>
-      <input type="button" value="-" onClick={restHandler}></input>
-      <input type="button" value="x" onClick={porHandler}></input>
-      <input type="button" value="/" onClick={divHandler}></input>
-      <input type="button" value="C" onClick={clearHandler}></input>
-      <input type="button" value="M+" onClick={memoryHandler}></input>
-      <input type="button" value="MR" onClick={memory2Handler}></input>
-      <p>{result.resultado}</p>
-      <h2>Historial</h2>
-      <History results={resultsHistory} />
+      <header>
+        <h1>CALCULADORA</h1>
+      </header>
+      <div className="container">
+        <input
+          className="casilla-primera"
+          type="text"
+          value={firstNumber}
+          onChange={changeFirstNumberHandler}
+        />
+        <input
+          className="casilla-segunda"
+          type="text"
+          value={secondNumber}
+          onChange={changeSecondNumberHandler}
+        />
+        <input
+          className="boton-suma"
+          type="button"
+          value="+"
+          onClick={addHandler}
+        ></input>
+        <input
+          className="boton-resta"
+          type="button"
+          value="-"
+          onClick={restHandler}
+        ></input>
+        <input
+          className="boton-mult"
+          type="button"
+          value="x"
+          onClick={porHandler}
+        ></input>
+        <input
+          className="boton-div"
+          type="button"
+          value="/"
+          onClick={divHandler}
+        ></input>
+        <input
+          className="boton-c"
+          type="button"
+          value="C"
+          onClick={clearHandler}
+        ></input>
+        <input
+          className="boton-m"
+          type="button"
+          value="M+"
+          onClick={memoryHandler}
+        ></input>
+        <input
+          className="boton-mr"
+          type="button"
+          value="MR"
+          onClick={memory2Handler}
+        ></input>
+      </div>
+      <div className="result">
+        <p>{result.resultado}</p>
+      </div>
+
+      <div className="historial">
+        <h2>Historial</h2>
+        <History results={resultsHistory} />
+      </div>
     </>
   );
 }
