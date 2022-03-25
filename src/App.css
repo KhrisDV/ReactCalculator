@@ -6,6 +6,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.25rem;
 }
 
 .casilla-primera {
@@ -23,6 +24,7 @@ header {
   text-align: center;
   background-color: lightgrey;
   font-size: 4em;
+  height: 150px;
   grid-column-start: 5;
   grid-column-end: 8;
   grid-row-start: 1;
